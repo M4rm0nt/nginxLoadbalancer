@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  nginx-load-balancer:
+    image: mein-nginx-load-balancer
+    ports:
+      - "80:80"
+    depends_on:
+      - webapp1
+      - webapp2
+
+  webapp1:
+    image: nginx:alpine
+    volumes:
+      - ./html1:/usr/share/nginx/html
+
+  webapp2:
+    image: nginx:alpine
+    volumes:
+      - ./html2:/usr/share/nginx/html
+
